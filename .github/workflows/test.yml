@@ -6,8 +6,9 @@ on:
       - master
 
 jobs:
-build:
-runs-on: ${{ matrix.os }}
+  build:
+  name: Test job
+  runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node: [12]
