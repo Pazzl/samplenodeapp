@@ -8,12 +8,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix: 
-        node: [10, 12, 14]
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        include:
-          - node: 10
-            os: macos-latest
-            experimental: true
+        node: [12]
+        os: [ubuntu-latest]
     steps:
       - name: my first step
         env:
@@ -23,3 +19,11 @@ jobs:
           LAST_NAME: Krupskiy
         run: |
           echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+      - name: my second step
+        if: success()
+        run: echo "The previous step has finished successfully"
+      - name: my third step
+        uses: actions/checkout@v1
+        with: 
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
